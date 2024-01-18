@@ -1,0 +1,49 @@
+= CMake + SWIG + Vcpkg + Vulkan
+
+Based on:
+
+* https://github.com/charles-lunarg/vk-bootstrap
+* https://github.com/google/shaderc
+
+== Building
+
+=== Prerequisites
+
+* CMake 3.22
+* Python 3.11 with Development Headers
+* SWIG
+* C++20 compiler
+* Clangd
+* Clang-Format
+* Clang-Tidy
+
+==== macOS
+
+* brew install autoconf-archive automake libtool
+* Vulkan SDK
++
+....
+export CPATH=/usr/local/include:$CPATH
+export C_INCLUDE_PATH=/usr/local/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=/usr/local/include:$CPLUS_INCLUDE_PATH
+ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+....
+
+=== Configure
+
+....
+mkdir build
+cmake -DCMAKE_BUILD_TYPE=Release -S ./ -B ./build
+....
+
+=== Compile
+
+....
+cmake --build ./build --config Release
+....
+
+=== Run
+
+....
+./build/bin/HelloWorld
+....
